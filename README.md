@@ -44,11 +44,12 @@ PASSWORD = 'qwe123'  # 数据库密码
 * python3 -m flask run
 
 ## 关于后台
-在首页连点 **3** 下头像即可
+在首页连点 **3** 下头像即可进入后台
 
 ## 关于 blog 样式
 
 借鉴了 [cnblogs-theme-silence](https://github.com/esofar/cnblogs-theme-silence)，以及 [大师傅key](https://gh0st.cn/) 的一些元素
+
 
 ## 关于安全性
 没有安全性可言，自己已知的就有一个管理后台越权
