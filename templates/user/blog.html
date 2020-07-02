@@ -1,0 +1,26 @@
+{% extends 'user/base.html' %}
+{% block title %}{{article.title}}{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blog.css') }}">
+{% endblock %}
+
+{% block main %}
+<div class="my_avatar">
+        <div><img src="{{ url_for('static', filename='images/'+img_name) }}" alt="" title="Secret！"></div>
+</div>
+    <div class="divider"></div>
+<div class="title">
+    {{article.title}}
+    {% if is_login==1 %}
+    <span class="logo-prompt code"><a href="{{ url_for('manager.edit_blog',blog_id=article.id)}}">编辑</a></span>
+    {% endif %}
+</div>
+<div class="divider"></div>
+<div class="content">
+    {% autoescape false %}
+        {{article.html_body}}
+    {% endautoescape %}
+
+</div>
+{% endblock %}

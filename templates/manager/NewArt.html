@@ -1,0 +1,64 @@
+{% extends 'manager/base.html' %}
+{% block title %}Make ART{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='editormd/css/editormd.css')}}" />
+<link rel="stylesheet" href="{{url_for('static', filename='css/newart.css')}}">
+<script src="{{url_for('static', filename='js/newart.js')}}"></script>
+{% endblock %}
+
+{% block main %}
+
+<form action="{{url_for('manager.make_new')}}" method="post" class="blog_form b_ready">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    <div class="t-box"><input type="text" id="myblog_title" name="title" value="博客标题" class="title"></div>
+    <div class="divider"></div>
+     <div id="test-editormd">
+        <textarea name="TextContent" id="TextContent" ></textarea>
+     </div>
+    {% if my_blog %}
+        <input type="hidden" name="old_blog" value="{{ my_blog.id }}"/>
+    {% else %}
+        <input type="hidden" name="old_blog" value="-1"/>
+    {% endif %}
+    <div class="t-box">
+        <button type="submit" class="btn btn-success">发布博客</button>
+    </div>
+
+</form>
+
+<div id="editor">
+    <!-- Tips: Editor.md can auto append a `<textarea>` tag -->
+    <textarea style="display:none;">### Hello Editor.md !</textarea>
+</div>
+<script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static',filename='editormd/editormd.min.js') }}"></script>
+<script type="text/javascript">
+    var testEditor;
+
+    $(function () {
+        testEditor = editormd("test-editormd", {
+            width: "85%",
+            height: 500,
+            syncScrolling: "single",
+            path: "{{ url_for('static',filename='editormd/lib/') }}",
+            // 上传图片
+            imageUpload : true,
+            imageFormats : [ "jpg", "jpeg", "gif", "png", "bmp", "webp" ],
+            // 上传图片时指定调用后台的视图函数
+            // homepage是蓝图 uploads是访问url
+            imageUploadURL : "{{ url_for('upload') }}",
+            saveHTMLToTextarea : true
+        });
+    });
+</script>
+<script>
+    {% if my_blog%}
+    function aaa(){
+        document.getElementById('myblog_title').value = "{{ my_blog.title }}";
+        document.getElementById('TextContent').value="{{ my_blog.mkdown_body}}";
+    }
+    aaa();
+    {% endif %}
+</script>
+{% endblock %}

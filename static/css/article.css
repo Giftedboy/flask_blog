@@ -1,0 +1,40 @@
+.header{
+    display: inline-block;
+    /*position: relative;*/
+}
+.left{
+    width: 50%;
+    padding-left: 10%;
+    font-size: 15px;
+}
+
+.right{
+    width: 40%;
+    padding-right: 10%;
+    text-align: right;
+}
+
+.divider{
+    background: #ddd;
+    background: -webkit-gradient(linear, left top, right top, from(rgba(255,255,255,0)), color-stop(#ccc), to(rgba(255,255,255,0)));
+    background: -webkit-linear-gradient(left, rgba(255,255,255,0), #ccc, rgba(255,255,255,0));
+    background: linear-gradient(to right, rgba(255,255,255,0), #ccc, rgba(255,255,255,0));
+    height: 1px;
+    margin: 2em 0;
+}
+
+.no_art{
+    text-align: center;
+}
+
+
+
+.operatora{
+    margin-right: 5px;
+}
+
+.page-navigation {
+    margin: 50px auto 0 auto;
+    text-align: center;
+    font-family: Consolas, monaco, monospace;
+}

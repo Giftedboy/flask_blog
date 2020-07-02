@@ -1,0 +1,52 @@
+{% extends 'manager/base.html' %}
+{% block title %}登陆{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+{% endblock %}
+
+{% block main %}
+<div class="index">
+    <div class="my_avatar">
+        <div><img src="{{ url_for('static', filename='images/'+img_name) }}" alt="" title="Secret！"></div>
+    </div>
+    <div class="divider"></div>
+    <div class="change_word">
+        <span id="typed"></span>
+        <script>
+        var typed = new Typed("#typed", {
+                        strings: ['{{ my_moto }}'],
+                        startDelay: 300,
+                        typeSpeed: 100,
+                        loop: true,
+                        backSpeed: 50,
+                        showCursor: true
+                    });
+        </script>
+    </div>
+    <div class="divider"></div>
+</div>
+
+<div class="my_login">
+    <form action="" method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Account</label>
+        <input type="text" class="form-control" id="exampleInputName2" placeholder="account" name="account" autofocus>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+        {%if flag==1 %}
+            <div>账号或密码错误</div>
+        {% elif flag==2 %}
+            <div>输入次数过多，请不要重试</div>
+        {% endif %}
+    </form>
+</div>
+
+{% endblock %}

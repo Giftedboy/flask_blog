@@ -1,0 +1,18 @@
+{% extends 'user/base.html' %}
+{% block title %}友链{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/friends.css') }}">
+<script src="{{ url_for('static', filename='js/friends.js') }}"></script>
+{% endblock %}
+
+{% block main %}
+<div class="divider"></div>
+<ul class="list-group">
+    {% for friend in friends %}
+        <li class="for_js list-group-item"><a href="{{ friends[friend] }}" target="_blank">{{ friend }}</a></li>
+    {% else %}
+        还没有添加友链哦！
+    {% endfor %}
+</ul>
+{% endblock %}

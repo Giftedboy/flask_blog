@@ -1,0 +1,51 @@
+{% extends 'manager/base.html' %}
+{% block title %}博客管理{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/edit.css') }}">
+<script src="{{ url_for('static', filename='js/friends.js') }}"></script>
+{% endblock %}
+
+{% block main %}
+<script>
+
+    function aaa(a){
+        var msg = "确认删除文章:" + a;
+        if(confirm(msg)==true){
+
+            return true;  //你也可以在这里做其他的操作
+        }else{
+
+            return false;
+        }
+        }
+
+
+</script>
+<ul class="list-group">
+
+    <li class="list-group-item for_js">
+        <div class="header left"><span>文章名</span></div>
+        <div class="header right"><span>操作</span></div>
+    </li>
+
+    <div class="divider"></div>
+    {% for article in articles %}
+        <li class="list-group-item for_js">
+            <div class="left header">
+                <a href="{{ url_for('show_article', blog_id=article.id)}}" target="_blank"><strong>{{ article.title }}</strong></a>
+            </div>
+
+            <div class="right header">
+                <a href="{{ url_for('manager.edit_blog', blog_id=article.id)}}" class="operatora"><strong>编辑</strong></a>
+                <a href="{{ url_for('manager.delete_blog', blog_id=article.id)}}" onclick="return aaa('{{ article.title }}')"><strong>删除</strong></a>
+            </div>
+
+        </li>
+
+    {% else %}
+        <li class="list-group-item list-group-item-danger no_art">还没有任何文章哦</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

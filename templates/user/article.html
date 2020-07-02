@@ -1,0 +1,42 @@
+{% extends 'user/base.html' %}
+{% block title %}所有文章{% endblock %}
+
+{% block head %}
+<script src="{{ url_for('static', filename='js/friends.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/article.css') }}">
+{% endblock %}
+
+{% block main %}
+<ul class="list-group">
+    <div class="divider"></div>
+    {% for article in articles.items %}
+        <li class="list-group-item for_js">
+            <div class="left header">
+                <a href="{{ url_for('show_article', blog_id=article.id)}}" target="_blank"><strong>{{ article.title }}</strong></a>
+            </div>
+
+            <div class="right header">
+                {{ article.creat_time }}
+            </div>
+
+        </li>
+
+    {% else %}
+        <li class="list-group-item list-group-item-danger no_art">还没有任何文章哦</li>
+    {% endfor %}
+</ul>
+{% if hasN==1 or hasB==1%}
+<div class="page-navigation code">
+    {% if hasB==1 %}
+    <a class="next" href="{{ url_for('user.show_page',page_id=page_id-1)}}">&lt;&lt;</a>
+    <span> · </span>
+    {% endif %}
+    <a class="home" href="{{ url_for('user.articles') }}" title="Back to Index">Index</a>
+    {% if hasN==1 %}
+    <span> · </span>
+    <a class="prev" href="{{ url_for('user.show_page',page_id=page_id+1)}}">&gt;&gt;</a>
+    {% endif %}
+</div>
+{% endif %}
+
+{% endblock %}

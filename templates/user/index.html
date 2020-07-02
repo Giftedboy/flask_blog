@@ -1,0 +1,53 @@
+{% extends 'user/base.html' %}
+{% block title %}主页{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock %}
+
+{% block main %}
+<div class="index">
+    <div class="my_avatar">
+        <div><img src="{{ url_for('static', filename='images/'+ img_name)}}" alt="" title="Secret！" onclick=secret()></div>
+    </div>
+    <div class="divider"></div>
+    <div class="change_word">
+        <span id="typed"></span>
+        <script>
+        var typed = new Typed("#typed", {
+                        strings: ['{{ my_moto }}'],
+                        startDelay: 300,
+                        typeSpeed: 100,
+                        loop: true,
+                        backSpeed: 50,
+                        showCursor: true
+                    });
+        </script>
+    </div>
+    <div class="my_info">
+        <div class="divider"></div>
+        <div><h3>关于我：</h3></div>
+        <div class="alert alert-success" role="alert">
+            {% for info in about_me %}
+                <p>{{ info }}：<strong>{{ about_me[info] }}</strong></p>
+            {% else %}
+                这个人很懒
+            {% endfor %}
+        </div>
+        <div class="progress">
+          <div class="progress-bar progress-bar-success progress-bar-striped" id="green" style="width: 0%">
+
+          </div>
+          <div class="progress-bar progress-bar-warning progress-bar-striped" id="yellow" style="width: 0%">
+
+          </div>
+          <div class="progress-bar progress-bar-danger progress-bar-striped" id="red" style="width: 0%">
+
+          </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
