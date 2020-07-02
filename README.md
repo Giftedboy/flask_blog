@@ -33,7 +33,7 @@ PASSWORD = 'qwe123'  # 数据库密码
 
 * 在 phpstudy 里创建一个 数据库，为自己在 congfig.py 中定义好的
 
-* pip install requirements.txt
+* pip install -r requirements.txt
 
 * python3 manage.py db init
 
