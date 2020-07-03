@@ -50,7 +50,7 @@ PASSWORD = 'qwe123'  # 数据库密码
 
 ## 关于 blog 样式
 
-借鉴了 [cnblogs-theme-silence](https://github.com/esofar/cnblogs-theme-silence)，以及 [大师傅key](https://gh0st.cn/) 的一些元素
+借鉴了 [cnblogs-theme-silence](https://github.com/esofar/cnblogs-theme-silence)的一些元素
 
 
 ## 关于安全性
